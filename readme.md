@@ -1,4 +1,4 @@
-https://ibb.co/ZGvMdcb
-https://ibb.co/wW19M7S
-https://ibb.co/DDs6WJh
-https://ibb.co/8Dy5BvL
+-   `npm start` &mdash; старт сервера в режимі production
+-   `npm run start:dev` &mdash; старт сервера в режимі розробки (development)
+-   `npm run lint` &mdash; запустити виконання перевірки коду з eslint, необхідно виконувати перед кожним PR та виправляти всі помилки лінтера
+-   `npm lint:fix` &mdash; та ж перевірка лінтера, але з автоматичними виправленнями простих помилок
