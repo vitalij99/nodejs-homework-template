@@ -51,6 +51,23 @@ const updateContact = async (req, res) => {
 
     res.json(result);
 };
+const updateStatusContact = async (req, res) => {
+    const { contactId } = req.params;
+
+    if (!contactId || Object.keys(req.body).length === 0) {
+        throw HttpError(400, "missing fields favorite");
+    }
+
+    const result = await Contact.findByIdAndUpdate(contactId, req.body, {
+        new: true,
+    });
+
+    if (!result) {
+        throw HttpError(404);
+    }
+
+    res.json(result);
+};
 
 module.exports = {
     getListContacts: ctrlWrapper(getListContacts),
@@ -58,4 +75,5 @@ module.exports = {
     removeContact: ctrlWrapper(removeContact),
     addContact: ctrlWrapper(addContact),
     updateContact: ctrlWrapper(updateContact),
+    updateStatusContact: ctrlWrapper(updateStatusContact),
 };
