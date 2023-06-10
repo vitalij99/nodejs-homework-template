@@ -4,7 +4,9 @@ const router = express.Router();
 const contactsController = require("../../controllers/contacts");
 const schemas = require("../../schemas/contacts");
 const { validateBody } = require("../../decorators");
-const { isValidId } = require("../../middlewares");
+const { isValidId, authenticate } = require("../../middlewares");
+
+router.use("/", authenticate);
 
 router.get("/", contactsController.getListContacts);
 

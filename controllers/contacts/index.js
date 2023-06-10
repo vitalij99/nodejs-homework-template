@@ -1,6 +1,6 @@
 const { ctrlWrapper } = require("../../decorators");
 
-const getListContacts = require("./getContactById");
+const getListContacts = require("./getListContacts");
 const getContactById = require("./getContactById");
 const removeContact = require("./removeContact");
 const addContact = require("./addContact");
