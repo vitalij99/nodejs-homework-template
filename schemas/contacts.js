@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const phoneRegexp = /^[+]*[(]{0,1}[0-9]{1,3}[)]{0,1}[-\s/0-9]*$/;
+const { phoneRegexp } = require("../values/patterns");
 
 const contactsAddSchema = Joi.object({
     name: Joi.string().required().messages({
