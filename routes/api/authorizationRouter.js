@@ -21,4 +21,10 @@ router.get("/current", authenticate, authorizationController.getCurrent);
 
 router.post("/logout", authenticate, authorizationController.logout);
 
+router.patch(
+    "/",
+    authenticate,
+    validateBody(schemas.userUpdateSubscription),
+    authorizationController.userUpdateSubscription
+);
 module.exports = router;

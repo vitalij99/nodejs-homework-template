@@ -1,6 +1,7 @@
 const { Schema, model } = require("mongoose");
 
 const { emailRegexp } = require("../values/patterns");
+const subscriptionList = require("../values/subscriptionList");
 
 const usersSchema = new Schema(
     {
@@ -16,7 +17,7 @@ const usersSchema = new Schema(
         },
         subscription: {
             type: String,
-            enum: ["starter", "pro", "business"],
+            enum: subscriptionList,
             default: "starter",
         },
         token: String,

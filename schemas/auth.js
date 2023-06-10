@@ -1,6 +1,7 @@
 const Joi = require("joi");
 
 const { emailRegexp } = require("../values/patterns");
+const subscriptionList = require("../values/subscriptionList");
 
 const userAuthSchema = Joi.object({
     email: Joi.string().pattern(emailRegexp).required().messages({
@@ -13,6 +14,13 @@ const userAuthSchema = Joi.object({
     }),
 });
 
+const userUpdateSubscription = Joi.object({
+    subscription: Joi.string()
+        .valid(...subscriptionList)
+        .required(),
+});
+
 module.exports = {
     userAuthSchema,
+    userUpdateSubscription,
 };
