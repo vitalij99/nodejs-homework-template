@@ -27,4 +27,12 @@ router.patch(
     validateBody(schemas.userUpdateSubscription),
     authorizationController.userUpdateSubscription
 );
+
+// валідацію
+router.patch(
+    "/avatars",
+    authenticate,
+
+    authorizationController.updateAvatarUrl
+);
 module.exports = router;
