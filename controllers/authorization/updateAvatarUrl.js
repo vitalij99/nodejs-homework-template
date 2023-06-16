@@ -16,7 +16,12 @@ const updateAvatarUrl = async (req, res) => {
     if (oldAvatar.includes("avatars")) {
         const oldAvatarFile = path.join(publicDir, oldAvatar);
 
-        fs.unlink(oldAvatarFile);
+        try {
+            await fs.access(oldAvatarFile);
+            await fs.unlink(oldAvatarFile);
+        } catch (error) {
+            console.log("File not found");
+        }
     }
 
     const newPath = path.join(avatarsDir, filename);
@@ -36,7 +41,7 @@ const updateAvatarUrl = async (req, res) => {
         throw HttpError(404);
     }
 
-    res.json(result);
+    res.status(200).json(result);
 };
 
 module.exports = updateAvatarUrl;
