@@ -6,7 +6,8 @@ const destination = path.resolve("tmp");
 const storage = multer.diskStorage({
     destination,
     filename: (req, file, cb) => {
-        const newFileName = `${Date.now()}_${file.originalname}`;
+        const { _id: id } = req.user;
+        const newFileName = `${id}_${Date.now()}_${file.originalname}`;
         cb(null, newFileName);
     },
 });
