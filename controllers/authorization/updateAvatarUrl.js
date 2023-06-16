@@ -5,24 +5,24 @@ const User = require("../../models/users");
 const { HttpError } = require("../../helpers");
 
 const avatarsDir = path.resolve("public", "avatars");
-// const publicDir = path.resolve("public");
+const publicDir = path.resolve("public");
 
 const updateAvatarUrl = async (req, res) => {
     const { _id: id } = req.user;
     const { path: oldPath, filename } = req.file;
 
-    // const { avatarURL: oldAvatar } = await User.findById(id);
-    // if (oldAvatar) {
-    //     const oldAvatarFile = publicDir + oldAvatar;
-    //     console.log(oldAvatarFile);
-    //     await fs.unlink(oldAvatarFile);
-    // }
+    const { avatarURL: oldAvatar } = await User.findById(id);
+
+    if (oldAvatar.includes("avatars")) {
+        const oldAvatarFile = path.join(publicDir, oldAvatar);
+
+        fs.unlink(oldAvatarFile);
+    }
 
     const newPath = path.join(avatarsDir, filename);
+    const avatarURL = path.join("avatars", filename);
 
     await fs.rename(oldPath, newPath);
-
-    const avatarURL = path.join("avatars", filename);
 
     const result = await User.findByIdAndUpdate(
         id,
