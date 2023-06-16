@@ -3,7 +3,7 @@ const router = express.Router();
 
 const authorizationController = require("../../controllers/authorization");
 const schemas = require("../../schemas/auth");
-const { authenticate } = require("../../middlewares");
+const { authenticate, upload } = require("../../middlewares");
 const { validateBody } = require("../../decorators");
 
 router.post(
@@ -28,11 +28,10 @@ router.patch(
     authorizationController.userUpdateSubscription
 );
 
-// валідацію
 router.patch(
     "/avatars",
     authenticate,
-
+    upload.single("avatarURL"),
     authorizationController.updateAvatarUrl
 );
 module.exports = router;
