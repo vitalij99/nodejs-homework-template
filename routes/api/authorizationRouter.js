@@ -34,4 +34,13 @@ router.patch(
     upload.single("avatarURL"),
     authorizationController.updateAvatarUrl
 );
+
+router.post(
+    "/verity",
+    validateBody(schemas.verifySchema),
+    authorizationController.resendVerity
+);
+
+router.get("/verity/:verificationToken", authorizationController.getVerity);
+
 module.exports = router;
