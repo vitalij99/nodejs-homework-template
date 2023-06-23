@@ -17,7 +17,7 @@ const getVerity = async (req, res) => {
 
     await User.findByIdAndUpdate(user._id, newData);
 
-    res.staus(200).json({ message: "Verification successful" });
+    res.status(200).json({ message: "Verification successful" });
 };
 
 module.exports = getVerity;
